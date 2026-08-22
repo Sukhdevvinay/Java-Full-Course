@@ -7,6 +7,7 @@ public class Demo4 {
         t1.start();
         t1.start();
         //t1.run();
+        // 
     }
 }
 
