@@ -18,7 +18,7 @@ public class Demo3 {
 
     }
     /*
-    Thread.yield();
+    Thread.yield(); -> This is Static Method
     Koi bhi thread jo current thread par jisme par hum Thread.yield laga rahe hain woh ye khaege 
     ki agar main already run ho rahi hun aur uske alwa jitne bhi thread present hain , jinki priority
     mere barabar hain aur unko agar cpu time nahi mil raha hain toh main khudka cpu time unko de dungi
