@@ -11,5 +11,5 @@ public class Demo6 {
 }
 
 /*
-    currentThread() --> reference of current running thread
+    currentThread() --> It Reture the reference of current running thread
 */
