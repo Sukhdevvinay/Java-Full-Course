@@ -45,5 +45,23 @@ condition
 Chahe ye parralley bhi chale toh ye dono thread ek value of cnt ko same le leneg in its registor for 
 its calcualtion so it is also a race condition.
 
+* Critical Section : 
+ Ye woh area hota hain hamare program ka jo Multiplethreads apas main share kar rahe hain. and woh
+risky area hain. because cnt variable is used by both 
+threads so there is high chance that two threads can go inisde cnt at same time or both thread used 
+this variable value at same time. and then race condition happens
+// So that type of area or variable we need to protect from Race Condition is called Critical section.
+// Shared Resources -> cnt++
+// Crtical section -> class method which do cnt++ like increment function() who is doing cnt++
+
+so Shared resources woh sare chije ho sakte hain jo sari critical section ke andar lie kar rahe ho
+void increment() {
+cn++;
+}
+* Increment function -> critical section because it is used by both threads to increment the values of cnt
+* all variable inside the Increment function methods are a shared resourcres. like cnt
 
 
+example of shared resouces :
+* BankAccount a1;
+* List<Integers>l;
