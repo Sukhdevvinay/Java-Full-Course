@@ -1,1 +1,49 @@
+* Problems in Multithreading code.
+
+I) Race Condition : 
+  Jo Bhi Hamara Program hoga uska jo final state hoga woh depend karega ki konsa thread phele execute
+  ho rahi thi , kitne context switching ho rahi thi un sab condition par depend karega
+- It Will depend on the order of execution of threads.
+
+example : 
+int cnt = 0;
+cnt++;
+
+so ye increment operation ek atomic operation nahi hain, atomic operations means jisko hum further 
+operations main divide nahi kar sakte hain.
+
+cnt++ operation can be divide into three operation : 
+i) Read value of cnt from Memory(RAM) and store into its registor.
+ii) Increment the value of cnt by 1 in its registor. 
+iii) we will write the updated value back into the Again Memory (RAM) from its registor value.
+
+But if we use Multithreading then there is Race Condition problem bw two running threads so result depend
+on the order of execution of cnt++ inner operation.
+ya Ye order of execution depend karega ki ye jo 3 operations hain woh kaise threads execute kar rahe hain
+or means ye jo multhithread hain woh in 3 operation ko kis order main execute kar rahe hain.
+
+Jaise ki 
+Thread t1,t2 ek sath run ho rahi hain , means ye dono ya toh parallely run ho rahi hain ya context 
+switching karke run ho rahi hain or concurrently run ho rahi hain so op non-deterministic hain.
+
+Race condition scenario : 
+Ho sakta hain ki thread t1,t2 simultaneously chale jaye cnt++ karne
+possible condition of order of execution of the value of cnt by two threads -> for one core cpu
+
+steps      t1               t2 
+1       read c = 0          -                   // not running -> (-)
+2         -                 read c = 0          // Yaha ho gayi context switching t1 to t2
+3      c=0 -> c=1             -               // Again CS (Context Swithcing)
+4        -                  c=0 -> c = 1       // Again CS
+5   write c =1 in RAM          -                // Agian cs
+6       -                    write c=1 in RAM    // Again cs
+
+so Jaise ki 2 thread run kar rahe hian , toh cnt ki value ko 0 se 2 jana chaiye. but ja rahe hain 
+sirf 1 kyuki t2 ne phir se cnt ki value ko 1 se overwrite kar diya hain. so this is called race 
+condition
+
+Chahe ye parralley bhi chale toh ye dono thread ek value of cnt ko same le leneg in its registor for 
+its calcualtion so it is also a race condition.
+
+
 
