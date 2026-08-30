@@ -65,3 +65,53 @@ cn++;
 example of shared resouces :
 * BankAccount a1;
 * List<Integers>l;
+
+
+III) Problem of Visibility : 
+One Thread Update a variable but another thread does not see the updated value.
+Jaise ki Thread t1 ne kise variable like cnt ko update toh kar diya hain. ex cnt = 1 kar diya 
+but Thread t2 use variable ki purani value read kar raha hoga like cnt = 0 
+so there is a visibility problem.
+
+Example : 
+Jaise ki humare pass CPU 2 cores ka hain. ye simultaneously 2 threads ko execute kar sakte hain.
+and each CPU Ke pass khud ke internal registors hain. Jisme we intermidiate value ko store karte 
+hain. and CPU has Cache layer 
+   --------           ----------
+   | CPU + |           |  CPU + |
+   | Regs  |           |  Regs  |              ----> CPU Contains Its Internal Registors.
+   |       |           |        |
+    -------           ----------
+      |                   |
+    ------            ----------
+   | Cache |          | Cache  |
+    ------            ----------  
+        |                  |
+        *                  *
+    -----------------------------
+    |          RAM               |       
+    -----------------------------
+
+and RAM Main hamare Program Counter (PC), Stack space Heap Space , Memory Area yaha hota hain.
+Order of Faster Memory proccesing timing :
+-> CPU's registor > Cache > RAM
+
+Jaise ki humare paas ek variable hain bool z = 0 
+so initially ye variable humare RAM ke andar store hoga.
+Jiase ki humne mana ki humare pas 2 threads hain , Jo T1 execute in 1st CPU and T2 thread execute 
+in 2nd CPU.
+
+So order of execution : 
+Jaise ki thread t1 run hui toh esne z ki value RAM se read kare and then store in its cache, 
+so ab thread t1 ke cache main z = 0, store hain 
+Same Thread t2 run hua and isne bhi Z ki value RAM se read kare and then store in its cache, 
+so ab thread t2 ke cache main z = 0, store hain , and isne t2 apne process main z = 0 se z = 1
+kar diya and isne z ki value ko RAM main bhi update kar diya that is z = 1 and also in its cache.
+Now Thread t1 uski value of z ko ab RAM se read nahi karta hain , woh apne cache se hi read 
+karta hain , so now there is different values of same variable z in its cache of 2 different 
+simultaneously running threads.
+But ye single threads main aata hi nahi , kyuki 1 thread hain toh woh hamese read hi karte from 
+RAM and write bhi karte RAM se. chahe woh RAM se uthaya ya cache se value of z toh woh value 
+toh dono main same hi hain. so no problem of Visibility.
+
+
