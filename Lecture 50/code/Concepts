@@ -115,3 +115,25 @@ RAM and write bhi karte RAM se. chahe woh RAM se uthaya ya cache se value of z t
 toh dono main same hi hain. so no problem of Visibility.
 
 
+IV) Ordering : 
+The Sequence in which instruction are executed.
+int a = 1 
+int b = 2
+Jaruri Nahi ki code line by line execute ho compiler based on theri optimization ke hissab se use 
+optimize karta hain based on optimation ke hisab se code ke line ko execute karta hain.
+but if we use multithreading then there is NON determization but for single thread ke liye op ese hi 
+aata hian jaise line by line execute hogi, chahe woh kaise run hoga.
+Mutlithreading we dont know that konsi thread konsi line ko kab execute karege.
+
+Reason for Thread Interference : 
+* Non Atomic Operation 
+* Shared Resoucres
+* Race Condition 
+* Ordering 
+* Visibility
+Due to Thread Interference we get Data Inconsisitency.
+Solution for This Problems 
+* Synchoronized 
+* Volatile
+* Atomic Integer
+* Proper locing Mechanism
